@@ -9,9 +9,9 @@ var router = new Router();
 router.get('/',async (ctx,next)=>{
     //ctx.router available
     ctx.body="首页"; //返回数据 相当于：原生里面的res.writeHead() res.end()
-}).get('/news', async(ctx)=>{
+}).get('/news', async (ctx)=>{
     ctx.body="这是一个新页面"
-}).get('/newscontent', async(ctx)=>{
+}).get('/newscontent', async (ctx)=>{
     //获取get传值
     /* 
         在koa2中get传值通过request接受，但是接收的方法有两种：query和querystring，
