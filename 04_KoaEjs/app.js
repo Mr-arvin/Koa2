@@ -29,6 +29,13 @@ router.get('/',async(ctx)=>{
     });
 })
 
+router.get('/news',async(ctx)=>{
+    let arr = ['红色','绿色','蓝色'];
+    await ctx.render('news',{
+        newsList:arr
+    })
+})
+
 app.use(router.routes());
 app.use(router.allowedMethods());
 app.listen(3000);
