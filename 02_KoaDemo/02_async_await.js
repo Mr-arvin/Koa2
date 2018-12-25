@@ -43,3 +43,4 @@ async function notAsyncFunc() {
     await Math.random();
 }
 notAsyncFunc()
+

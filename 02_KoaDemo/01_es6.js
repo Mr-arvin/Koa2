@@ -9,10 +9,6 @@ getData1(function(data){
     console.log(data)
 })
 
-
-function getData2(){
-
-}
 // Promise 来处理 方式一：
 // resolve 成功的回调函数
 // reject 失败的回调函数
