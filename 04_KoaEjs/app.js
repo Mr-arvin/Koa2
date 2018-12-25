@@ -13,10 +13,22 @@ var ejs = require('ejs');
 
 var app = new Koa();
 
+/**  注意：我们需要在每一个路由的render立马都要渲染一个公共的数据 
+ * 公共的数据放在这个里面，这样的化在模版的任何地方都可以用
+ ctx.state = { //放在中间件
+    session: this.session,
+    title:'app'
+ }
+ */    
+app.use(async(ctx,next)=>{
+    ctx.state.userinfo='张三';
+    await next();
+})
+
 // 1:配置模版引擎中间件 --第三方中间件
 app.use(views('views',{
     extension:'ejs' //应用ejs模版引擎
-}))
+})) 
 
 //2:另外这样配置也可以,但文件需要是点html结尾
 // app.use(views('views',{map:{html:'ejs'}}))
