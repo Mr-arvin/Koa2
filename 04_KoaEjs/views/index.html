@@ -4,17 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ejs</title>
+    <title>Document</title>
 </head>
 <body>
     <p>
-        配置模版引擎中间件 --第三方中间件
-        app.use(views('views',{
-            extension:'ejs' //应用ejs模版引擎
-        }))
-    </p>
-    <p>
-        <%= title %>
+        另外这样配置也可以,但文件需要是点html结尾
+        app.use(views('views',{map:{html:'ejs'}}))
     </p>
 </body>
 </html>

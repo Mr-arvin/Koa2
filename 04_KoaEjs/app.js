@@ -13,14 +13,20 @@ var ejs = require('ejs');
 
 var app = new Koa();
 
-//app.use(views('views),{map:{html:'ejs'}}) 这样配置也可以
-// 配置模版引擎中间件 --第三方中间件
+// 1:配置模版引擎中间件 --第三方中间件
 app.use(views('views',{
     extension:'ejs' //应用ejs模版引擎
 }))
 
+//2:另外这样配置也可以,但文件需要是点html结尾
+// app.use(views('views',{map:{html:'ejs'}}))
+
+// 1或2配置好之后，再写这里
 router.get('/',async(ctx)=>{
-    await ctx.render('index');
+    let title = 'myheart will be ok!'
+    await ctx.render('index',{
+        title:title
+    });
 })
 
 app.use(router.routes());
