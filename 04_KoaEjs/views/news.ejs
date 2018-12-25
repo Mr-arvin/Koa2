@@ -7,10 +7,26 @@
     <title>news</title>
 </head>
 <body>
+    <!-- 引入外部ejs -->
+    <% include public/header.ejs%>
+    
     <ul>
         <%for(var i = 0; i < newsList.length; i++){%>
             <li><%=newsList[i]%></li>
         <%}%>
     </ul>
+
+    <h2>绑定html数据 %= 和 %-的区别</h2>
+    <br>
+    <%=content %>
+    <!-- 输出html -->
+    <%-content %>
+
+    <h2>条件判断</h2>
+    <%if(num>24){%>
+        大于24
+    <%}else{%>
+        小于24
+    <%}%>
 </body>
 </html>

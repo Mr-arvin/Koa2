@@ -31,8 +31,12 @@ router.get('/',async(ctx)=>{
 
 router.get('/news',async(ctx)=>{
     let arr = ['红色','绿色','蓝色'];
+    let content = "<h2>这是颜色列表</h2>";
+    let num = 12;
     await ctx.render('news',{
-        newsList:arr
+        newsList:arr,
+        content:content,
+        num:num
     })
 })
 
