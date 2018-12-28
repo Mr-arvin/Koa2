@@ -1,3 +1,4 @@
+//原声nodej在koa中获取表单提交的数据
 var Koa = require('koa'),
     router = require('koa-router')(),
     views = require('koa-views'),
@@ -18,7 +19,7 @@ router.get('/',async(ctx)=>{
 router.post('/doAdd',async(ctx)=>{
     //原声nodej在koa中获取表单提交的数据
     var data = await common.getPostData(ctx);
-    console.log(data);
+    // console.log(data);
     ctx.body=data;
 })
 
