@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>这是一个koa-art-template</title>
+</head>
+<body>
+    <h2>绑定数据</h2>
+    <hr>
+    <%=list.name%>
+    <hr>
+    <%=1+2%>
+    <hr>
+    <h2>绑定html的数据</h2>
+    <%-list.h%>
+    <hr>
+    <h2>条件</h2>
+    <%if(list.num > 10){%>
+        num 大于10
+        <%}else{%>
+        num 小于10
+    <%}%>
+    <hr>
+    <h2>循环</h2>
+    <ul>
+        <%for(var i=0; i<list.data.length; i++){%>
+            <li><%=list.data[i]%></li>
+        <%}%>
+    </ul>
+    <hr>
+    <%include('./common/footer.html')%>
+    <hr>
+</body>
+</html>

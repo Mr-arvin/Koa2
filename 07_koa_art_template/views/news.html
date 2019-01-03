@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>这是新闻页面 koa-art-template</title>
+</head>
+<body>
+    <hr>
+    <h2>绑定数据</h2>
+    {{list.name}}
+    <hr>
+    <h2>绑定html数据</h2>
+    {{@ list.h}}
+    <hr>
+    <h2>条件</h2>
+    {{if list.num > 10}}
+        <span>
+            大于10
+        </span>
+        {{else}}
+        <span>
+            小于10
+        </span>
+    {{/if}}
+    <hr>
+    <h2>循环数据</h2>
+    <ul>
+        {{each list.data}}
+            <li>{{$index}}---{{$value}}</li>
+        {{/each}}
+    </ul>
+    <hr>
+    {{include 'common/footer.html'}}
+</body>
+</html>
