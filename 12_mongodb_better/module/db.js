@@ -1,24 +1,31 @@
-//DB库
+//DB库  
 var MongoClient = require('mongodb').MongoClient;
 var Config=require('./config.js');
 
 class Db{
     constructor(){
-        this.dbClient='';
-        this.connect();//初始化的时候连接数据库
+        this.dbClient=''; //提高性能 第一次连接数据库 第二次就不需要连接了
+        // this.connect();//初始化的时候连接数据库
     }
 
     connect(){ //连接数据库 
         /* 异步变同步 */
-        return new Promise((resolve,reject)=>{ //=>可以解决this指向问题
-            MongoClient.connect(Config.dbUrl,{useNewUrlParser:true},(err,client)=>{
-                if(err){
-                    reject(err);
-                }else{
-                    var db = client.db(Config.dbName);
-                    resolve(db);
-                }
-            })
+        return new Promise((resolve,reject)=>{ //=>可以解决this指向问题            
+            if(!this.dbClient){
+                console.log('this.dbClient == true')
+                MongoClient.connect(Config.dbUrl,{useNewUrlParser:true},(err,client)=>{
+                    if(err){
+                        reject(err);
+                    }else{
+                        var db = client.db(Config.dbName);
+                        this.dbClient = db;
+                        resolve(this.dbClient);
+                    }
+                })
+            }else{
+                console.log('this.dbClient == false')
+                resolve(this.dbClient);
+            }
         })
     }
     
@@ -45,16 +52,20 @@ class Db{
     }
 }
 
-var myDb0 = new Db();
-console.time('start0')
-myDb.find('user',{}).then((data)=>{
-    console.log(data)
-    console.timeEnd('start0')
-})
+var myDb = new Db();
 
-var myDb1 = new Db();
-console.time('start1')
-myDb1.find('user',{}).then((data)=>{
-    console.log(data)
-    console.timeEnd('start1')
-})
+setTimeout(function(){
+    console.time('start0')
+    myDb.find('user',{}).then((data)=>{
+        console.log(data)
+        console.timeEnd('start0')
+    })
+},1000);
+
+setTimeout(function(){
+    console.time('start1')
+    myDb.find('user',{}).then((data)=>{
+        console.log(data)
+        console.timeEnd('start1')
+    })
+},3000);
