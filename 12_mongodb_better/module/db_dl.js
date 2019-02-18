@@ -3,6 +3,13 @@ var MongoClient = require('mongodb').MongoClient;
 var Config=require('./config.js');
 
 class Db{
+    static getInstance(){ //单例 多次实例化不共享问题
+        if(!Db.instance){
+            Db.instance = new Db();
+        }
+        return Db.instance;
+    }
+
     constructor(){
         this.dbClient=''; //提高性能 第一次连接数据库 第二次就不需要连接了
         // this.connect();//初始化的时候连接数据库
@@ -52,9 +59,9 @@ class Db{
     }
 }
 
-var myDb1 = new Db();
-var myDb2 = new Db();
-var myDb3 = new Db();
+var myDb1 = Db.getInstance();
+var myDb2 = Db.getInstance();
+var myDb3 = Db.getInstance();
 
 setTimeout(function(){
     console.time('start0')
