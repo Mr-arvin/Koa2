@@ -3,13 +3,6 @@ var MongoClient = require('mongodb').MongoClient;
 var Config=require('./config.js');
 
 class Db{
-    static getInstance(){ //单例 多次实例化不共享问题
-        if(!Db.instance){
-            Db.instance = new Db();
-        }
-        return Db.instance;
-    }
-
     constructor(){
         this.dbClient=''; //提高性能 第一次连接数据库 第二次就不需要连接了
         // this.connect();//初始化的时候连接数据库
@@ -59,4 +52,38 @@ class Db{
     }
 }
 
-module.exports = Db.getInstance();
+var myDb1 = new Db();
+var myDb2 = new Db();
+var myDb3 = new Db();
+
+setTimeout(function(){
+    console.time('start0')
+    myDb1.find('user',{}).then((data)=>{
+        console.log(data)
+        console.timeEnd('start0')
+    })
+},1000);
+
+setTimeout(function(){
+    console.time('start1')
+    myDb2.find('user',{}).then((data)=>{
+        console.log(data)
+        console.timeEnd('start1')
+    })
+},2000);
+
+setTimeout(function(){
+    console.time('start1')
+    myDb3.find('user',{}).then((data)=>{
+        console.log(data)
+        console.timeEnd('start1')
+    })
+},3000);
+
+setTimeout(function(){
+    console.time('start1')
+    myDb3.find('user',{}).then((data)=>{
+        console.log(data)
+        console.timeEnd('start1')
+    })
+},4000);
