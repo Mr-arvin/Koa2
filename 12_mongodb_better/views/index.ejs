@@ -6,10 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>ejs</title>
 </head>
-<link rel="stylesheet" href="css/basic.css">
+<link rel="stylesheet" href="../public/css/basic.css">
 <body>
     index page
-    <img src="img/a.jpg" alt="">
-    <img src="img/b.jpg" alt="">
+    <img style="width:100px;height: 100px;" src="img/b.jpg" alt="">
+    {{each list.data}}
+        <li>{{$index}}---{{$value}}</li>
+    {{/each}}
+    {{each list.name}}
+        <!-- <li>{{$index}}---{{$value}}</li> -->
+    {{/each}}
+    {{@ list.h}}
+    {{each database}}
+        <li>{{$value.username}}</li>
+    {{/each}}
 </body>
 </html>

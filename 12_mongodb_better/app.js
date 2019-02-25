@@ -20,8 +20,9 @@ render(app, {
 app.use(static(__dirname + '/static'));
 
 router.get('/',async(ctx)=>{
-    // ctx.body =  "首页";
+    console.time('start1');
     var result = await DB.find('user',{});
+    console.timeEnd('start1')
     console.log(result)
     let list = {
         name: '张三',
@@ -31,11 +32,15 @@ router.get('/',async(ctx)=>{
     }
 
     await ctx.render('index',{
-        list:list
+        list:list,
+        database: result
     });
 });
 
 router.get('/news',async(ctx)=>{
+    console.time('start2');
+    var result = await DB.find('user',{});
+    console.timeEnd('start2')
     let list = {
         name: '张三',
         h: '<h3>这是一个h3</h3>',

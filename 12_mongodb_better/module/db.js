@@ -12,7 +12,7 @@ class Db{
 
     constructor(){
         this.dbClient=''; //提高性能 第一次连接数据库 第二次就不需要连接了
-        // this.connect();//初始化的时候连接数据库
+        this.connect();//初始化的时候连接数据库 这样以后就不用再连了 查询速度更快
     }
 
     connect(){ //连接数据库 
